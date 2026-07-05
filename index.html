@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دعوة زفاف عادل وسعاد الملكية</title>
+    <title>دعوة زفاف عادل وسعاد</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Cinzel:wght@500;700&family=Reem_Kufi:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --royal-burgundy: #721c24; /* العنابي الفاخر للمغلف */
-            --gold-metallic: #d4af37; /* الذهبي البراق */
-            --bg-cream: #fbf9f4; /* خلفية الكرت الهادئة */
-            --text-dark: #3a3a3a;
+            --royal-burgundy: #721c24; /* لون المغلف العنابي */
+            --gold-metallic: #d4af37; /* لون الختم والخطوط الذهبية */
+            --bg-dark: #121212; /* خلفية الصفحة الافتتاحية */
         }
 
         * {
@@ -24,19 +23,22 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #111111;
-            overflow: hidden;
+            background-color: var(--bg-dark);
             height: 100vh;
+            overflow: hidden; /* لمنع التمرير قبل فتح المغلف */
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: background-color 1s ease;
         }
 
-        /* 1. الشاشة الافتتاحية: المغلف الملكي المغلق */
-        #envelope-container {
+        /* =========================================
+           1. واجهة المغلف الملكي (الشاشة الافتتاحية)
+           ========================================= */
+        #envelope-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), 
+            background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.9)), 
                         url('https://images.unsplash.com/photo-1546193430-c2d20e1cd977?q=80&w=1200&auto=format&fit=crop') no-repeat center center;
             background-size: cover;
             display: flex;
@@ -49,33 +51,33 @@
 
         .save-the-date {
             font-family: 'Cinzel', serif;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: #ffffff;
-            letter-spacing: 8px;
+            letter-spacing: 10px;
             text-align: center;
             line-height: 1.2;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             font-weight: 700;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.6);
-            animation: fadeInDown 1.2s ease;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            animation: fadeInDown 1.5s ease;
         }
 
         .save-the-date span {
             display: block;
-            font-size: 1.5rem;
-            letter-spacing: 6px;
+            font-size: 1.2rem;
+            letter-spacing: 5px;
             color: var(--gold-metallic);
-            margin: 10px 0;
+            margin: 15px 0;
         }
 
-        /* تصميم المغلف العنابي التفاعلي */
-        .envelope {
+        /* المغلف التفاعلي */
+        .envelope-wrapper {
             position: relative;
-            width: 380px;
-            height: 280px;
+            width: 350px;
+            height: 250px;
             background-color: var(--royal-burgundy);
-            border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            border-radius: 5px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9);
             cursor: pointer;
             transition: transform 0.4s ease;
             display: flex;
@@ -84,324 +86,213 @@
             animation: bounceIn 1.5s ease;
         }
 
-        .envelope:hover {
-            transform: scale(1.03);
+        /* خطوط المغلف الوهمية (لتشبه الظرف الحقيقي) */
+        .envelope-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
         }
 
-        /* الخطوط والزخارف البيضاء الفاخرة على المغلف */
+        .envelope-wrapper:hover {
+            transform: scale(1.05);
+        }
+
         .envelope-monogram {
             font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
-            color: rgba(255, 255, 255, 0.85);
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.9);
             font-style: italic;
             pointer-events: none;
             z-index: 2;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
-        /* الختم الشمعي */
         .wax-seal {
             position: absolute;
-            bottom: 30px;
-            width: 75px;
-            height: 75px;
-            background: radial-gradient(#90232b, #5a1217);
+            bottom: -20px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(#90232b, #4a0e13);
             border-radius: 50%;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.5), inset 0 0 8px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6), inset 0 0 10px rgba(0,0,0,0.5);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 3;
-            border: 2px solid #4a0e13;
+            border: 2px solid #36090d;
         }
 
         .wax-seal i {
             color: var(--gold-metallic);
-            font-size: 1.8rem;
+            font-size: 2rem;
             opacity: 0.9;
             animation: pulse 2s infinite;
         }
 
         .click-hint {
-            color: #ccc;
-            font-size: 0.95rem;
-            margin-top: 25px;
-            letter-spacing: 1px;
+            color: #dddddd;
+            font-size: 1rem;
+            margin-top: 50px;
+            letter-spacing: 2px;
             animation: pulse 1.5s infinite;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* 2. بطاقة الدعوة الداخلية المزدوجة (Modal الخلفية) */
-        #main-card-modal {
-            width: 90%;
-            max-width: 850px;
-            background-color: var(--bg-cream);
-            border: 1px solid rgba(214, 175, 55, 0.3);
-            box-shadow: 0 30px 70px rgba(0,0,0,0.8);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            position: relative;
+        /* =========================================
+           2. واجهة بطاقة الزفاف (تظهر بعد الفتح)
+           ========================================= */
+        #invitation-content {
             opacity: 0;
-            transform: scale(0.9) translateY(30px);
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(40px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
-            z-index: 10;
-        }
-
-        /* تأثيرات الإطار والزوايا النباتية للبطاقة */
-        .card-half {
-            padding: 50px 35px;
-            position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            min-height: 580px;
-        }
-
-        .left-half {
-            border-left: 1px dashed rgba(214, 175, 55, 0.3);
-            background-color: #fdfbvar(--bg-cream);
-        }
-
-        /* الزوايا المشجرة المستوحاة من التصميم */
-        .corner-plant {
-            position: absolute;
-            width: 110px;
-            height: 110px;
-            opacity: 0.9;
-            pointer-events: none;
-        }
-        .top-left { top: 15px; left: 15px; transform: rotate(0deg); }
-        .top-right { top: 15px; right: 15px; transform: scaleX(-1); }
-        .bottom-left { bottom: 15px; left: 15px; transform: scaleY(-1); }
-        .bottom-right { bottom: 15px; right: 15px; transform: scale(-1); }
-
-        /* جرافيك الخواتم الذهبية الكبيرة والفيونكة */
-        .wedding-rings-gfx {
-            width: 80%;
-            max-width: 260px;
-            position: relative;
-            margin-top: 20px;
-        }
-
-        /* تفاصيل النص للجهة اليسرى */
-        .bismillah-gold {
-            font-family: 'Reem Kufi', sans-serif;
-            color: var(--gold-metallic);
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .welcome-msg {
-            font-size: 1.1rem;
-            color: #777777;
-            line-height: 1.8;
-            margin-bottom: 35px;
-            max-width: 320px;
-            text-align: center;
-        }
-
-        /* حلقة العروسين الدائرية الأنيقة */
-        .names-oval-frame {
-            border: 1px solid var(--gold-metallic);
-            border-radius: 50% / 40%;
-            padding: 30px 45px;
-            text-align: center;
-            margin-bottom: 35px;
-            background: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            position: relative;
-        }
-
-        .names-oval-frame::after {
-            content: '✿';
-            position: absolute;
-            bottom: -12px; left: 50%;
-            transform: translateX(-50%);
-            color: var(--gold-metallic);
-            background: var(--bg-cream);
-            padding: 0 10px;
-            font-size: 0.9rem;
-        }
-
-        .display-name {
-            font-family: 'Reem Kufi', sans-serif;
-            font-size: 2.4rem;
-            color: #927424;
-            font-weight: 700;
-            margin: 5px 0;
-        }
-
-        .and-sign {
-            font-size: 1.2rem;
-            color: #999;
-            margin: 2px 0;
-        }
-
-        /* التاريخ والموقع */
-        .date-day {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--text-dark);
-            margin-bottom: 5px;
-        }
-
-        .full-date {
-            font-size: 1.3rem;
-            color: #83671a;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-        }
-
-        /* زر الخريطة وتأكيد الحضور */
-        .action-buttons {
-            display: flex;
-            gap: 15px;
             width: 100%;
-            justify-content: center;
+            height: 100%;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        /* إطار البطاقة الذي يحمل صورة Canva الخاصة بك */
+        .card-image-container {
+            width: 100%;
+            max-width: 1000px; /* حجم كبير يناسب جودة الصورة */
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            background-color: #ffffff;
+            margin-bottom: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* زر خرائط جوجل الفاخر أسفل البطاقة */
+        .map-btn-container {
+            margin-bottom: 50px;
+            text-align: center;
         }
 
         .btn-gold {
-            background: linear-gradient(135deg, #caa12c, #e7c86c);
-            color: #222;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #c5a037, #eadd96, #c5a037);
+            color: #1a1a1a;
             border: none;
-            padding: 12px 22px;
-            font-size: 0.95rem;
+            padding: 15px 40px;
+            font-size: 1.1rem;
             font-weight: bold;
+            font-family: 'Cairo', sans-serif;
             text-decoration: none;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(197, 160, 55, 0.3);
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
-            background: linear-gradient(135deg, #e7c86c, #caa12c);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(197, 160, 55, 0.5);
         }
 
-        /* الأنماط الحركية (Animations) */
+        /* الأنماط الحركية */
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
+            from { opacity: 0; transform: translateY(-40px); }
             to { opacity: 1; transform: translateY(0); }
         }
         @keyframes bounceIn {
-            0% { opacity: 0; transform: scale(0.3); }
-            50% { opacity: 0.9; transform: scale(1.05); }
-            70% { transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
+            0% { opacity: 0; transform: scale(0.5); }
+            60% { opacity: 1; transform: scale(1.05); }
+            80% { transform: scale(0.95); }
+            100% { transform: scale(1); }
         }
         @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.9; }
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.08); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
         }
 
-        /* التوافق التام مع الجوال */
-        @media (max-width: 800px) {
-            body { overflow-y: auto; height: auto; padding: 20px 0; }
-            #main-card-modal { grid-template-columns: 1fr; margin: 40px auto; }
-            .card-half { min-height: auto; padding: 40px 20px; }
-            .left-half { border-left: none; border-bottom: 1px dashed rgba(214, 175, 55, 0.3); }
-            .envelope { width: 320px; height: 240px; }
+        /* متوافق مع شاشات الجوال */
+        @media (max-width: 768px) {
             .save-the-date { font-size: 2.8rem; }
+            .envelope-wrapper { width: 300px; height: 210px; }
+            .envelope-monogram { font-size: 3rem; }
+            #invitation-content { padding: 10px; }
+            .card-image-container { border-radius: 4px; }
+            .btn-gold { padding: 12px 30px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- شاشة المغلف الفاخرة التي تظهر أولاً -->
-    <div id="envelope-container" onclick="openWeddingEnvelope()">
+    <!-- 1. الشاشة الافتتاحية (المغلف) -->
+    <div id="envelope-screen" onclick="openEnvelope()">
         <h1 class="save-the-date">
             SAVE
             <span>THE DATE</span>
             DATE
         </h1>
         
-        <div class="envelope">
-            <div class="envelope-monogram">S&A</div>
+        <div class="envelope-wrapper">
+            <div class="envelope-monogram">A&S</div>
             <div class="wax-seal">
                 <i class="fa-solid fa-heart"></i>
             </div>
         </div>
         
-        <p class="click-hint">اضغط على الختم لفتح المغلف الملكي ✉</p>
+        <p class="click-hint">اضغط على الختم لفتح الدعوة</p>
     </div>
 
-    <!-- بطاقة الدعوة الفاخرة المزدوجة المقتبسة من تصميمك -->
-    <main id="main-card-modal">
-        
-        <!-- النصف الأيمن: صورة الخواتم الكبيرة مع الفيونكة والزينة -->
-        <div class="card-half left-half">
-            <!-- الزوايا الزهرية الأربعة -->
-            <img class="corner-plant top-left" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
-            <img class="corner-plant top-right" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
-            <img class="corner-plant bottom-left" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
-            <img class="corner-plant bottom-right" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
-            
-            <!-- جرافيك الخواتم الفاخرة في المنتصف -->
-            <svg class="wedding-rings-gfx" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <!-- الدائرة الأولى -->
-                <circle cx="80" cy="110" r="45" fill="none" stroke="#d4af37" stroke-width="8" filter="drop-shadow(0px 5px 5px rgba(0,0,0,0.15))"/>
-                <!-- الدائرة الثانية المتداخلة -->
-                <circle cx="125" cy="120" r="45" fill="none" stroke="#b89324" stroke-width="8" filter="drop-shadow(0px 5px 5px rgba(0,0,0,0.15))"/>
-                <!-- شريطة الفيونكة الأنيقة في الأعلى -->
-                <path d="M70,70 C50,40 30,80 75,72 C100,70 105,70 125,72 C170,80 150,40 130,70 C110,90 90,90 70,70 Z" fill="#f4ede2" stroke="#d4af37" stroke-width="2" />
-                <circle cx="100" cy="71" r="9" fill="#eadecc" stroke="#b89324" stroke-width="2"/>
-            </svg>
+    <!-- 2. المحتوى الفعلي (يظهر بعد الفتح) -->
+    <div id="invitation-content">
+        <!-- استخدام صورتك المرفقة كبطاقة أساسية -->
+        <div class="card-image-container">
+            <img src="Screenshot_20260705_214656_Canva_2.jpg" alt="بطاقة دعوة زفاف عادل وسعاد">
         </div>
 
-        <!-- النصف الأيسر: تفاصيل الفرح والأسماء والتاريخ -->
-        <div class="card-half">
-            <img class="corner-plant top-left" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
-            <img class="corner-plant top-right" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
-            <img class="corner-plant bottom-left" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
-            <img class="corner-plant bottom-right" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
-
-            <div class="bismillah-gold">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-            <p class="welcome-msg">بكل الحب والسعادة، ندعوكم لمشاركتنا فرحة العمر في يومنا المميز والبهيج</p>
-            
-            <!-- إطار الأسماء البيضاوي الفخم -->
-            <div class="names-oval-frame">
-                <div class="display-name">Adel</div>
-                <div class="and-sign">and</div>
-                <div class="display-name">Souad</div>
-            </div>
-
-            <div class="date-day">يوم الخميس</div>
-            <div class="full-date">2026 / 08 / 06</div>
-
-            <div class="action-buttons">
-                <a href="https://maps.app.goo.gl/A5phCVhhYfF1xxFY6" target="_blank" class="btn-gold">
-                    <i class="fa-solid fa-map-pin"></i> موقع القاعة
-                </a>
-            </div>
+        <!-- زر الانتقال لموقع القاعة -->
+        <div class="map-btn-container">
+            <a href="https://maps.app.goo.gl/A5phCVhhYfF1xxFY6" target="_blank" class="btn-gold">
+                <i class="fa-solid fa-location-dot"></i> موقع القاعة على خرائط جوجل
+            </a>
         </div>
-
-    </main>
+    </div>
 
     <script>
-        // دالة الأنيميشن لفتح وحذف المغلف وعرض بطاقة المودال الخلفية
-        function openWeddingEnvelope() {
-            const envelope = document.getElementById('envelope-container');
-            const mainCard = document.getElementById('main-card-modal');
+        function openEnvelope() {
+            const envelopeScreen = document.getElementById('envelope-screen');
+            const invitationContent = document.getElementById('invitation-content');
             
-            // تلاشي واختفاء شاشة المغلف
-            envelope.style.opacity = '0';
-            envelope.style.pointerEvents = 'none';
+            // 1. إخفاء شاشة المغلف
+            envelopeScreen.style.opacity = '0';
+            envelopeScreen.style.transform = 'scale(1.1)';
+            envelopeScreen.style.pointerEvents = 'none';
             
-            // ظهور بطاقة الدعوة المزدوجة بفخامة
+            // 2. إظهار البطاقة وتغيير لون الخلفية بعد مهلة قصيرة
             setTimeout(() => {
-                envelope.style.display = 'none';
-                mainCard.style.opacity = '1';
-                mainCard.style.transform = 'scale(1) translateY(0)';
-                mainCard.style.pointerEvents = 'auto';
-                document.body.style.backgroundColor = '#181818'; // لون خلفية دافئ متناسق
+                envelopeScreen.style.display = 'none'; // إزالة المغلف نهائياً
+                
+                // تغيير خلفية الموقع للون يتناسب مع بطاقتك (أوف وايت / كريمي فاتح)
+                document.body.style.backgroundColor = '#fcfbf9'; 
+                document.body.style.overflow = 'auto'; // السماح بالتمرير
+                
+                // إظهار المحتوى
+                invitationContent.style.opacity = '1';
+                invitationContent.style.transform = 'translateY(0) scale(1)';
+                invitationContent.style.pointerEvents = 'auto';
             }, 800);
         }
     </script>
 </body>
 </html>
-
