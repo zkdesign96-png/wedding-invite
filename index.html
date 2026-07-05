@@ -1,21 +1,19 @@
-```html:index.html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دعوة زفاف عادل وسعاد</title>
+    <title>دعوة زفاف عادل وسعاد الملكية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Reem_Kufi:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Cinzel:wght@500;700&family=Reem_Kufi:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2C4A3E; /* أخضر زمردي فاخر */
-            --secondary-color: #D4AF37; /* ذهبي ملكي */
-            --bg-light: #FDFBF7; /* أوف وايت دافئ */
-            --text-dark: #333333;
-            --text-muted: #666666;
+            --royal-burgundy: #721c24; /* العنابي الفاخر للمغلف */
+            --gold-metallic: #d4af37; /* الذهبي البراق */
+            --bg-cream: #fbf9f4; /* خلفية الكرت الهادئة */
+            --text-dark: #3a3a3a;
         }
 
         * {
@@ -26,555 +24,384 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            text-align: center;
-        }
-
-        h1, h2, h3, .bride-groom {
-            font-family: 'Reem Kufi', sans-serif;
-        }
-
-        /* زينة الإطار الخارجي اللطيف */
-        .page-border {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
-            border: 2px solid var(--secondary-color);
-            pointer-events: none;
-            z-index: 1000;
-            opacity: 0.3;
-        }
-
-        /* الهيدر والمقدمة */
-        header {
-            padding: 100px 20px 60px 20px;
-            position: relative;
-            background: linear-gradient(180deg, rgba(44, 74, 62, 0.05) 0%, rgba(253, 251, 247, 0) 100%);
-        }
-
-        .bismillah {
-            font-size: 1.6rem;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            font-family: 'Reem Kufi', sans-serif;
-            font-weight: 600;
-        }
-
-        .wedding-title {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-        }
-
-        .names-container {
+            background-color: #111111;
+            overflow: hidden;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 25px;
-            margin: 30px 0;
         }
 
-        .bride-groom {
-            font-size: 3.8rem;
-            color: var(--primary-color);
+        /* 1. الشاشة الافتتاحية: المغلف الملكي المغلق */
+        #envelope-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), 
+                        url('https://images.unsplash.com/photo-1546193430-c2d20e1cd977?q=80&w=1200&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .save-the-date {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            color: #ffffff;
+            letter-spacing: 8px;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 40px;
             font-weight: 700;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            animation: fadeInDown 1.2s ease;
         }
 
-        .ampersand {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            transform: scale(1.1);
+        .save-the-date span {
+            display: block;
+            font-size: 1.5rem;
+            letter-spacing: 6px;
+            color: var(--gold-metallic);
+            margin: 10px 0;
         }
 
-        .invitation-text {
-            font-size: 1.25rem;
-            max-width: 650px;
-            margin: 25px auto;
-            line-height: 1.9;
-            color: var(--text-dark);
-            padding: 0 20px;
-        }
-
-        /* العداد التنازلي */
-        .countdown-section {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 60px 20px;
-            margin: 40px 0 60px 0;
+        /* تصميم المغلف العنابي التفاعلي */
+        .envelope {
             position: relative;
-            box-shadow: 0 10px 30px rgba(44, 74, 62, 0.15);
-        }
-
-        .countdown-section h2 {
-            color: var(--secondary-color);
-            margin-bottom: 35px;
-            font-size: 2.2rem;
-            font-weight: 600;
-        }
-
-        .timer {
+            width: 380px;
+            height: 280px;
+            background-color: var(--royal-burgundy);
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            cursor: pointer;
+            transition: transform 0.4s ease;
             display: flex;
             justify-content: center;
-            gap: 25px;
-            direction: ltr; /* لترتيب الوقت بشكل صحيح من اليسار لليمين */
+            align-items: center;
+            animation: bounceIn 1.5s ease;
         }
 
-        .time-box {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 20px 25px;
-            border-radius: 12px;
-            min-width: 100px;
-            border-bottom: 4px solid var(--secondary-color);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .envelope:hover {
+            transform: scale(1.03);
         }
 
-        .time-box span {
-            display: block;
-            font-size: 2.2rem;
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        .time-box label {
-            font-size: 0.95rem;
-            color: #e0e0e0;
-            margin-top: 8px;
-            display: block;
-        }
-
-        /* معرض صور القاعة */
-        .gallery-section {
-            padding: 60px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .gallery-section h2 {
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-        }
-
-        .gallery-intro {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* شبكة الصور وتصميمها الفخم */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+        /* الخطوط والزخارف البيضاء الفاخرة على المغلف */
+        .envelope-monogram {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-style: italic;
+            pointer-events: none;
+            z-index: 2;
             margin-bottom: 40px;
         }
 
-        .gallery-item {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            border: 2px solid rgba(212, 175, 55, 0.25);
-            transition: all 0.4s ease;
-            position: relative;
-            background-color: #fff;
-        }
-
-        /* الصورة الكبيرة لكوشة العروسين تأخذ مساحة عريضة */
-        .gallery-item.featured {
-            grid-column: span 3;
-            height: 450px;
-        }
-
-        .gallery-item.half-wide {
-            grid-column: span 2;
-            height: 350px;
-        }
-
-        .gallery-item.normal {
-            height: 350px;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-            display: block;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(44, 74, 62, 0.15);
-            border-color: var(--secondary-color);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.04);
-        }
-
-        .image-caption {
+        /* الختم الشمعي */
+        .wax-seal {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            color: white;
-            padding: 15px;
-            font-size: 1rem;
-            text-align: right;
-            font-weight: 600;
+            bottom: 30px;
+            width: 75px;
+            height: 75px;
+            background: radial-gradient(#90232b, #5a1217);
+            border-radius: 50%;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5), inset 0 0 8px rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+            border: 2px solid #4a0e13;
         }
 
-        /* تفاصيل الحفل وموقع القاعة */
-        .details-section {
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .detail-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            margin-bottom: 30px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            transition: transform 0.3s;
-        }
-
-        .detail-card:hover {
-            transform: translateY(-3px);
-        }
-
-        .detail-card h3 {
-            color: var(--primary-color);
+        .wax-seal i {
+            color: var(--gold-metallic);
             font-size: 1.8rem;
+            opacity: 0.9;
+            animation: pulse 2s infinite;
+        }
+
+        .click-hint {
+            color: #ccc;
+            font-size: 0.95rem;
+            margin-top: 25px;
+            letter-spacing: 1px;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* 2. بطاقة الدعوة الداخلية المزدوجة (Modal الخلفية) */
+        #main-card-modal {
+            width: 90%;
+            max-width: 850px;
+            background-color: var(--bg-cream);
+            border: 1px solid rgba(214, 175, 55, 0.3);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.8);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            opacity: 0;
+            transform: scale(0.9) translateY(30px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* تأثيرات الإطار والزوايا النباتية للبطاقة */
+        .card-half {
+            padding: 50px 35px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 580px;
+        }
+
+        .left-half {
+            border-left: 1px dashed rgba(214, 175, 55, 0.3);
+            background-color: #fdfbvar(--bg-cream);
+        }
+
+        /* الزوايا المشجرة المستوحاة من التصميم */
+        .corner-plant {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+        .top-left { top: 15px; left: 15px; transform: rotate(0deg); }
+        .top-right { top: 15px; right: 15px; transform: scaleX(-1); }
+        .bottom-left { bottom: 15px; left: 15px; transform: scaleY(-1); }
+        .bottom-right { bottom: 15px; right: 15px; transform: scale(-1); }
+
+        /* جرافيك الخواتم الذهبية الكبيرة والفيونكة */
+        .wedding-rings-gfx {
+            width: 80%;
+            max-width: 260px;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        /* تفاصيل النص للجهة اليسرى */
+        .bismillah-gold {
+            font-family: 'Reem Kufi', sans-serif;
+            color: var(--gold-metallic);
+            font-size: 1.6rem;
+            font-weight: 600;
             margin-bottom: 20px;
         }
 
-        .detail-card p {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
-
-        /* الأزرار الفخمة */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            padding: 16px 40px;
-            border-radius: 30px;
+        .welcome-msg {
             font-size: 1.1rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: 2px solid var(--primary-color);
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(44, 74, 62, 0.2);
-            font-family: 'Cairo', sans-serif;
-        }
-
-        .btn:hover {
-            background-color: transparent;
-            color: var(--primary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(44, 74, 62, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
-            color: #000;
-        }
-
-        .btn-secondary:hover {
-            background-color: transparent;
-            color: #a3811f;
-            border-color: var(--secondary-color);
-        }
-
-        /* نموذج تأكيد الحضور */
-        .rsvp-section {
-            padding: 60px 20px;
-            background: linear-gradient(180deg, rgba(253, 251, 247, 0) 0%, rgba(44, 74, 62, 0.03) 100%);
-        }
-
-        .rsvp-form {
-            max-width: 550px;
-            margin: 0 auto;
-            background: white;
-            padding: 45px 35px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: right;
-            border: 1px solid rgba(44, 74, 62, 0.1);
-        }
-
-        .rsvp-form h2 {
+            color: #777777;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            max-width: 320px;
             text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            font-size: 2rem;
         }
 
-        .form-group {
+        /* حلقة العروسين الدائرية الأنيقة */
+        .names-oval-frame {
+            border: 1px solid var(--gold-metallic);
+            border-radius: 50% / 40%;
+            padding: 30px 45px;
+            text-align: center;
+            margin-bottom: 35px;
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            position: relative;
+        }
+
+        .names-oval-frame::after {
+            content: '✿';
+            position: absolute;
+            bottom: -12px; left: 50%;
+            transform: translateX(-50%);
+            color: var(--gold-metallic);
+            background: var(--bg-cream);
+            padding: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        .display-name {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 2.4rem;
+            color: #927424;
+            font-weight: 700;
+            margin: 5px 0;
+        }
+
+        .and-sign {
+            font-size: 1.2rem;
+            color: #999;
+            margin: 2px 0;
+        }
+
+        /* التاريخ والموقع */
+        .date-day {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .full-date {
+            font-size: 1.3rem;
+            color: #83671a;
+            font-weight: 700;
+            letter-spacing: 1px;
             margin-bottom: 25px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--primary-color);
-            font-size: 1.05rem;
-        }
-
-        .form-group input, .form-group select {
+        /* زر الخريطة وتأكيد الحضور */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
             width: 100%;
-            padding: 14px;
-            border: 1px solid #dddddd;
-            border-radius: 8px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s;
+            justify-content: center;
         }
 
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
-        }
-
-        /* التنبيهات */
-        .alert-success {
-            display: none;
-            background-color: #e6f4ea;
-            color: #137333;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        footer {
-            padding: 50px 20px;
-            color: var(--text-muted);
+        .btn-gold {
+            background: linear-gradient(135deg, #caa12c, #e7c86c);
+            color: #222;
+            border: none;
+            padding: 12px 22px;
             font-size: 0.95rem;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        /* متوافق مع شاشات الجوال */
-        @media (max-width: 900px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            .gallery-item.featured {
-                grid-column: span 2;
-                height: 300px;
-            }
-            .gallery-item.half-wide {
-                grid-column: span 2;
-                height: 280px;
-            }
-            .gallery-item.normal {
-                height: 250px;
-            }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, #e7c86c, #caa12c);
         }
 
-        @media (max-width: 600px) {
-            header {
-                padding-top: 70px;
-            }
-            .bride-groom {
-                font-size: 2.8rem;
-            }
-            .names-container {
-                flex-direction: column;
-                gap: 5px;
-            }
-            .timer {
-                gap: 12px;
-            }
-            .time-box {
-                min-width: 75px;
-                padding: 15px 8px;
-            }
-            .time-box span {
-                font-size: 1.6rem;
-            }
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            .gallery-item.featured, .gallery-item.half-wide, .gallery-item.normal {
-                grid-column: span 1;
-                height: 240px;
-            }
+        /* الأنماط الحركية (Animations) */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.9; }
+        }
+
+        /* التوافق التام مع الجوال */
+        @media (max-width: 800px) {
+            body { overflow-y: auto; height: auto; padding: 20px 0; }
+            #main-card-modal { grid-template-columns: 1fr; margin: 40px auto; }
+            .card-half { min-height: auto; padding: 40px 20px; }
+            .left-half { border-left: none; border-bottom: 1px dashed rgba(214, 175, 55, 0.3); }
+            .envelope { width: 320px; height: 240px; }
+            .save-the-date { font-size: 2.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="page-border"></div>
-
-    <!-- المقدمة -->
-    <header>
-        <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-        <div class="wedding-title">دعوة زفاف وتناول عشاء</div>
+    <!-- شاشة المغلف الفاخرة التي تظهر أولاً -->
+    <div id="envelope-container" onclick="openWeddingEnvelope()">
+        <h1 class="save-the-date">
+            SAVE
+            <span>THE DATE</span>
+            DATE
+        </h1>
         
-        <div class="names-container">
-            <div class="bride-groom">عادل</div>
-            <div class="ampersand">&</div>
-            <div class="bride-groom">سعاد</div>
-        </div>
-
-        <p class="invitation-text">
-            يُسعدنا ويشرّفنا دعوتكم لحضور حفل زفافنا ومشاركتنا فرحة العمر. وبحضوركم تكتمل بهجتنا وتضاء ليالينا. تسرنا تلبية دعوتكم ومشاركتكم الأوقات السعيدة معنا.
-        </p>
-    </header>
-
-    <!-- العداد التنازلي -->
-    <section class="countdown-section">
-        <h2>المتبقي على الفرحة السعيدة</h2>
-        <div class="timer">
-            <div class="time-box">
-                <span id="seconds">00</span>
-                <label>ثانية</label>
-            </div>
-            <div class="time-box">
-                <span id="minutes">00</span>
-                <label>دقيقة</label>
-            </div>
-            <div class="time-box">
-                <span id="hours">00</span>
-                <label>ساعة</label>
-            </div>
-            <div class="time-box">
-                <span id="days">00</span>
-                <label>يوم</label>
+        <div class="envelope">
+            <div class="envelope-monogram">S&A</div>
+            <div class="wax-seal">
+                <i class="fa-solid fa-heart"></i>
             </div>
         </div>
-    </section>
-
-    <!-- معرض صور القاعة وأجواء الفرح -->
-    <section class="gallery-section">
-        <h2>أجواء قاعة الأفراح الفاخرة</h2>
-        <p class="gallery-intro">ألقِ نظرة على تفاصيل القاعة والترتيبات المميزة التي تم تجهيزها بعناية لنسعد بصحبتكم</p>
         
-        <div class="gallery-grid">
-            <!-- كوشة العروسين الرئيسية كصورة بارزة بالكامل -->
-            <div class="gallery-item featured">
-                <img src="Screenshot_20260705_203838_Maps.jpg" alt="منصة كوشة العروسين الفاخرة">
-                <div class="image-caption">منصة كوشة العروسين الملكية</div>
-            </div>
+        <p class="click-hint">اضغط على الختم لفتح المغلف الملكي ✉</p>
+    </div>
 
-            <!-- لحظة الاحتفال والبهجة -->
-            <div class="gallery-item half-wide">
-                <img src="Screenshot_20260705_203740_Maps.jpg" alt="لحظة دخول العروسين والاحتفالات">
-                <div class="image-caption">أجواء الاحتفال الساحرة بالفرح</div>
-            </div>
-
-            <!-- تورتة الزفاف المميزة -->
-            <div class="gallery-item normal">
-                <img src="Screenshot_20260705_203808_Maps.jpg" alt="تورتة زفاف عادل وسعاد">
-                <div class="image-caption">تورتة الزفاف الأنيقة بحرف A</div>
-            </div>
-
-            <!-- تفاصيل الزهور وطاولات الضيوف -->
-            <div class="gallery-item normal">
-                <img src="Screenshot_20260705_203847_Maps.jpg" alt="تنسيق زهور طاولات الحضور">
-                <div class="image-caption">تفاصيل الطاولات وتنسيق الزهور</div>
-            </div>
-
-            <!-- لقطة أوسع لصالة الاستقبال وقاعة الحفل -->
-            <div class="gallery-item half-wide">
-                <img src="Screenshot_20260705_203854_Maps.jpg" alt="تنظيم صالة جلوس الضيوف الفاخرة">
-                <div class="image-caption">قاعة الاستقبال وجلسات الضيوف</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- التفاصيل وموقع القاعة -->
-    <section class="details-section">
-        <div class="detail-card">
-            <h3>التاريخ والوقت</h3>
-            <p><strong>الخميس، 06 أغسطس 2026</strong></p>
-            <p>نستقبلكم بكل حب لنمضي معاً ليلة من أجمل ليالي العمر</p>
+    <!-- بطاقة الدعوة الفاخرة المزدوجة المقتبسة من تصميمك -->
+    <main id="main-card-modal">
+        
+        <!-- النصف الأيمن: صورة الخواتم الكبيرة مع الفيونكة والزينة -->
+        <div class="card-half left-half">
+            <!-- الزوايا الزهرية الأربعة -->
+            <img class="corner-plant top-left" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
+            <img class="corner-plant top-right" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
+            <img class="corner-plant bottom-left" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
+            <img class="corner-plant bottom-right" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
+            
+            <!-- جرافيك الخواتم الفاخرة في المنتصف -->
+            <svg class="wedding-rings-gfx" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- الدائرة الأولى -->
+                <circle cx="80" cy="110" r="45" fill="none" stroke="#d4af37" stroke-width="8" filter="drop-shadow(0px 5px 5px rgba(0,0,0,0.15))"/>
+                <!-- الدائرة الثانية المتداخلة -->
+                <circle cx="125" cy="120" r="45" fill="none" stroke="#b89324" stroke-width="8" filter="drop-shadow(0px 5px 5px rgba(0,0,0,0.15))"/>
+                <!-- شريطة الفيونكة الأنيقة في الأعلى -->
+                <path d="M70,70 C50,40 30,80 75,72 C100,70 105,70 125,72 C170,80 150,40 130,70 C110,90 90,90 70,70 Z" fill="#f4ede2" stroke="#d4af37" stroke-width="2" />
+                <circle cx="100" cy="71" r="9" fill="#eadecc" stroke="#b89324" stroke-width="2"/>
+            </svg>
         </div>
 
-        <div class="detail-card">
-            <h3>موقع الحفل</h3>
-            <p>يسعدنا حضوركم في قاعة الحفل الرسمية</p>
-            <p style="margin-bottom: 25px; color: var(--text-muted);">يمكنكم الضغط على الزر أدناه للوصول التلقائي للموقع والاتجاهات مباشرة عبر خرائط جوجل</p>
-            <a href="https://maps.app.goo.gl/A5phCVhhYfF1xxFY6" target="_blank" class="btn btn-secondary">
-                <i class="fa-solid fa-map-location-dot"></i> عرض موقع القاعة على الخريطة
-            </a>
+        <!-- النصف الأيسر: تفاصيل الفرح والأسماء والتاريخ -->
+        <div class="card-half">
+            <img class="corner-plant top-left" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
+            <img class="corner-plant top-right" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
+            <img class="corner-plant bottom-left" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
+            <img class="corner-plant bottom-right" src="https://cdn-icons-png.flaticon.com/512/3211/3211181.png" alt="زينة">
+
+            <div class="bismillah-gold">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <p class="welcome-msg">بكل الحب والسعادة، ندعوكم لمشاركتنا فرحة العمر في يومنا المميز والبهيج</p>
+            
+            <!-- إطار الأسماء البيضاوي الفخم -->
+            <div class="names-oval-frame">
+                <div class="display-name">Adel</div>
+                <div class="and-sign">and</div>
+                <div class="display-name">Souad</div>
+            </div>
+
+            <div class="date-day">يوم الخميس</div>
+            <div class="full-date">2026 / 08 / 06</div>
+
+            <div class="action-buttons">
+                <a href="https://maps.app.goo.gl/A5phCVhhYfF1xxFY6" target="_blank" class="btn-gold">
+                    <i class="fa-solid fa-map-pin"></i> موقع القاعة
+                </a>
+            </div>
         </div>
-    </section>
 
-    <!-- تأكيد الحضور -->
-    <section class="rsvp-section" id="rsvp">
-        <form class="rsvp-form" id="weddingRsvpForm">
-            <h2>تأكيد الحضور (RSVP)</h2>
-            <div class="form-group">
-                <label for="guest-name">الاسم الكريم:</label>
-                <input type="text" id="guest-name" placeholder="يرجى كتابة الاسم الثلاثي" required>
-            </div>
-            <div class="form-group">
-                <label for="attendance">هل ستشرفنا بحضورك؟</label>
-                <select id="attendance" required>
-                    <option value="yes">نعم، بكل تأكيد سأحضر</option>
-                    <option value="no">نعتذر، لن نتمكن من الحضور</option>
-                </select>
-            </div>
-            <div class="form-group" id="guests-count-group">
-                <label for="guests-count">عدد المرافقين (بمن فيهم أنت):</label>
-                <select id="guests-count">
-                    <option value="1">شخص واحد</option>
-                    <option value="2">شخصين</option>
-                    <option value="3">3 أشخاص</option>
-                    <option value="4">4 أشخاص أو أكثر</option>
-                </select>
-            </div>
-            <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">إرسال التأكيد</button>
-            <div class="alert-success" id="successMessage">شكرًا جزيلًا لتأكيد حضورك! نسعد برؤيتك في ليلتنا المميزة. ✨</div>
-        </form>
-    </section>
+    </main>
 
-    <!-- الفوتر -->
-    <footer>
-        <p>بارك الله لهما وبارك عليهما وجمع بينهما في خير</p>
-        <p style="margin-top: 12px; font-size: 0.85rem;">© 2026 حفل زفاف عادل & سعاد</p>
-    </footer>
-
-    <!-- سكربت العداد والتفاعل مع النموذج -->
     <script>
-        // تحديد تاريخ الزفاف (6 أوت 2026)
-        const weddingDate = new Date("August 6, 2026 19:00:00").getTime();
+        // دالة الأنيميشن لفتح وحذف المغلف وعرض بطاقة المودال الخلفية
+        function openWeddingEnvelope() {
+            const envelope = document.getElementById('envelope-container');
+            const mainCard = document.getElementById('main-card-modal');
+            
+            // تلاشي واختفاء شاشة المغلف
+            envelope.style.opacity = '0';
+            envelope.style.pointerEvents = 'none';
+            
+            // ظهور بطاقة الدعوة المزدوجة بفخامة
+            setTimeout(() => {
+                envelope.style.display = 'none';
+                mainCard.style.opacity = '1';
+                mainCard.style.transform = 'scale(1) translateY(0)';
+                mainCard.style.pointerEvents = 'auto';
+                document.body.style.backgroundColor = '#181818'; // لون خلفية دافئ متناسق
+            }, 800);
+        }
+    </script>
+</body>
+</html>
 
-        const timerFunction = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            // حساب الأيام، الساعات، الدقائق والثواني
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
-
-```
