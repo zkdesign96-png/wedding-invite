@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg-color: #fcfbf9; /* لون خلفية سكري ناعم */
+            --bg-color: #fcfbf9; 
             --gold-light: #eadd96;
             --gold-metallic: #c5a037; 
             --gold-dark: #927424;
@@ -24,9 +24,9 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #000000; /* خلفية سوداء للمغلف لزيادة التركيز */
+            background-color: #000000; 
             height: 100vh;
-            overflow: hidden; /* إخفاء التمرير قبل فتح المغلف */
+            overflow: hidden; 
             transition: background-color 1.5s ease;
         }
 
@@ -36,7 +36,8 @@
         #opening-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('Red and White Elegant Wedding Save the Date Invitation Video_20260705_221152_0000.png');
+            /* تم تحديث اسم الصورة هنا */
+            background-image: url('cover.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -80,7 +81,6 @@
             overflow-y: auto;
         }
 
-        /* تنسيق حاويات الصور لتكون أنيقة ومتناسقة */
         .card-wrapper {
             position: relative;
             width: 100%;
@@ -110,7 +110,7 @@
            3. صورة الموقع القابلة للضغط
            ========================================= */
         .map-card {
-            display: block; /* لتعمل كزر */
+            display: block; 
             text-decoration: none;
             margin-bottom: 50px;
             cursor: pointer;
@@ -125,7 +125,7 @@
         }
 
         .map-card:hover img {
-            transform: scale(1.02); /* تكبير خفيف للصورة عند التأشير */
+            transform: scale(1.02);
         }
 
         .map-overlay {
@@ -142,7 +142,7 @@
         }
 
         .map-overlay i {
-            color: #ff3333; /* لون أحمر يتناسب مع الدبوس في صورتك */
+            color: #ff3333; 
             margin-left: 8px;
             font-size: 1.4rem;
         }
@@ -158,7 +158,7 @@
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: -40px; /* تداخل مع الصورة العلوية */
+            margin-top: -40px; 
             margin-bottom: 30px;
             position: relative;
             z-index: 10;
@@ -200,34 +200,30 @@
             60% { transform: translateY(-5px); }
         }
 
-        /* توافق الشاشات الصغيرة (الهواتف) */
+        /* توافق الشاشات الصغيرة */
         @media (max-width: 600px) {
             #invitation-content { padding: 25px 15px; }
             .countdown-container { gap: 10px; margin-top: -30px; }
             .time-box { min-width: 70px; padding: 10px; }
             .time-box span { font-size: 1.8rem; }
             .time-box label { font-size: 0.85rem; }
-            /* جعل النص يظهر دائماً في الهواتف ليعرفوا أنها قابلة للضغط */
             .map-overlay { opacity: 1; padding: 40px 10px 15px; font-size: 1.1rem; } 
         }
     </style>
 </head>
 <body>
 
-    <!-- الشاشة الافتتاحية (المغلف) -->
     <div id="opening-screen" onclick="openInvitation()">
         <div class="click-hint">اضغط لفتح الدعوة ✉</div>
     </div>
 
-    <!-- محتوى الدعوة المتسلسل -->
     <div id="invitation-content">
         
-        <!-- 1. الصورة الأولى (الخواتم) -->
+        <!-- 1. تم تحديث اسم صورة الخواتم -->
         <div class="card-wrapper">
-            <img src="بطاقة مطوية لحفل زفاف باللون الأبيض و البني_20260705_221319_0000.png" alt="خواتم زفاف عادل وسعاد">
+            <img src="img1.png" alt="خواتم زفاف عادل وسعاد">
         </div>
 
-        <!-- 2. العداد التنازلي المكتمل -->
         <div class="countdown-container">
             <div class="time-box">
                 <span id="seconds">00</span>
@@ -247,14 +243,14 @@
             </div>
         </div>
 
-        <!-- 3. الصورة الثانية (التفاصيل واللون الأزرق) -->
+        <!-- 2. تم تحديث اسم صورة التفاصيل -->
         <div class="card-wrapper details-card">
-            <img src="دعوة مربع باللون الازرق والبني لحفل زفاف مع الزهور_20260705_221020_0000.png" alt="تفاصيل حفل زفاف عادل وسعاد">
+            <img src="img2.png" alt="تفاصيل حفل زفاف عادل وسعاد">
         </div>
 
-        <!-- 4. الصورة الثالثة (الموقع) - مبرمجة كزر يفتح خرائط جوجل -->
+        <!-- 3. تم تحديث اسم صورة الخريطة -->
         <a href="https://maps.app.goo.gl/A5phCVhhYfF1xxFY6" target="_blank" class="card-wrapper map-card">
-            <img src="Destination Road Trip Your Story_20260706_151311_0000.png" alt="موقع قاعة الأفراح">
+            <img src="img3.png" alt="موقع قاعة الأفراح">
             <div class="map-overlay">
                 <i class="fa-solid fa-location-dot"></i>
                 <span>اضغط هنا لفتح الخريطة والاتجاهات</span>
@@ -264,21 +260,18 @@
     </div>
 
     <script>
-        // دالة فتح الدعوة التفاعلية
         function openInvitation() {
             const openingScreen = document.getElementById('opening-screen');
             const invitationContent = document.getElementById('invitation-content');
             
-            // إخفاء المغلف
             openingScreen.style.opacity = '0';
             openingScreen.style.transform = 'scale(1.05)';
             openingScreen.style.pointerEvents = 'none';
             
-            // إظهار المحتوى الداخلي والتمرير
             setTimeout(() => {
                 openingScreen.style.display = 'none';
                 document.body.style.backgroundColor = 'var(--bg-color)'; 
-                document.body.style.overflow = 'auto'; // السماح بالنزول
+                document.body.style.overflow = 'auto';
                 
                 invitationContent.style.opacity = '1';
                 invitationContent.style.transform = 'scale(1)';
@@ -286,14 +279,12 @@
             }, 900);
         }
 
-        // إعداد العداد التنازلي: 6 أغسطس 2026 - الساعة 16:30
         const weddingDate = new Date("August 6, 2026 16:30:00").getTime();
 
         const timerFunction = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
-            // إذا انتهى الوقت (يوم الزفاف)
             if (distance < 0) {
                 clearInterval(timerFunction);
                 document.getElementById("days").innerText = "00";
@@ -303,13 +294,11 @@
                 return;
             }
 
-            // حساب الوقت المتبقي
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // عرض الأرقام مع إضافة صفر إذا كان الرقم أقل من 10 (مثل 09 بدلاً من 9)
             document.getElementById("days").innerText = days.toString().padStart(2, '0');
             document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
             document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
@@ -318,4 +307,3 @@
     </script>
 </body>
 </html>
-
